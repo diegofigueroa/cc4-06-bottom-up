@@ -178,8 +178,6 @@ B -> d
 		<li>¿Es necesario reduchir cada vez que el stack contiene un RHS válido?</li>
 	      </ul>
 	    </li>
-	    <li>Accept: El stack debe contener únicamente el símbolo de inicio, debimos haber recorrido todo el input.</li>
-	    <li>Error: Recorrimos todo el input, pero el stack tiene más que el símbolo de inicio. Rechaza el input.</li>
 	  </ul>
 	</article>
       </slide>
@@ -420,7 +418,7 @@ current_token++;
 	  <pre><b>Reduce n:</b> Expulsar de ambos stacks un símbolo por cada símbolo del RHS de la regla (n)
 Push del LHS de la regla (n) al stack de símbolos.
 Buscar [states_stack.top, symbol_stack.top].
-Push estado k al stack de símbolos (según goto k).
+Push estado k al stack de estados (según goto k).
 </pre>
 	</article>
       </slide>
