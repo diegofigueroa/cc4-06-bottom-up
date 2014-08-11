@@ -2222,7 +2222,7 @@ s5 = {X -> ()&sdot;}
 	</article>
       </slide>
       
-      <slide>
+  <slide>
 	<hgroup>
 	  <h2>DFA</h2>
 	  <h3>Tabla de parseo</h3>
@@ -2244,7 +2244,22 @@ s5 = {X -> ()&sdot;}
 	    </li>
 	  </ul>
 	</article>
-      </slide>
+  </slide>
+        
+  <slide>
+	<hgroup>
+	  <h2>DFA</h2>
+	  <h3>Tabla de parseo</h3>
+	</hgroup>
+	<article>
+	  <ul>
+        <li>Si existe un item <b class="red">S -> X &sdot;$</b><br/>
+		<ul><li class="blue">Aceptamos el string de entrada.</li></ul></li>
+        <br/>
+        <li class="red">Todas las celdas restantes representan un error.</li>
+	  </ul>
+	</article>
+  </slide>
       
       <slide>
 	<hgroup>
@@ -2324,12 +2339,11 @@ s5 = {X -> ()&sdot;}
 	<article>
 	  <ul class="build">
 	    <li>Un item A -> &alpha; &sdot; implica una reducción.</li>
-	    <li>Pero no indica cúando reducir, por lo que la aplicamos en todos los terminales.</li>
+	    <li>Pero no indica cúando reducir, por lo que la aplicamos en <b>todos los terminales</b>.</li>
+        <li>¿Qué sucede con los estados que contengan más de un item de esta forma?</li>
+	    <li>Tendríamos un conflicto <b class="red">reduce/reduce</b>.</li><br/>
 	    <li>¿Qué sucede con los estados que contengan un item de esta forma, y además tengan transiciones salientes?</li>
-	    <li>Tendríamos un conflicto shift/reduce.</li>
-	    
-	    <li>¿Qué sucede con los estados que contengan más de un item de esta forma?</li>
-	    <li>Tendríamos un conflicto reduce/reduce.</li>
+	    <li>Tendríamos un conflicto <b class="red">shift/reduce</b>.</li>
 	  </ul>
 	</article>
       </slide>
@@ -2434,11 +2448,11 @@ s5 = {X -> ()&sdot;}
 	</hgroup>
 	<article>
 	  <ul class="build">
-	    <li>Un item [A -> &alpha;&sdot;B   T] significa:
+	    <li>Un item [A -> &alpha;&sdot;&beta;   T] significa:
 	      <ul>
 		<li>El parser ya consumió &alpha;.</li>
 		<li>Si parsea &beta; y el siguiente token es T</li>
-		<li>Entonces debe reducir usando A -> &alpha;B.</li>
+		<li>Entonces debe reducir usando A -> &alpha;&beta;.</li>
 	      </ul>
 	    </li>
 	  </ul>
@@ -2497,7 +2511,7 @@ s5 = {X -> ()&sdot;}
 		  <ul>
 		    <li>for each X -> &gamma;
 		      <ul>
-			<li>for each d &isin; First(&beta;c)
+			<li>for each terminal <b>d</b> &isin; First(&beta;c)
 			  <ul>
 			    <li> I = I &cup; {[X -> &sdot; &gamma; &nbsp; d]}</li>
 			  </ul>
@@ -2507,7 +2521,7 @@ s5 = {X -> ()&sdot;}
 		  </ul>
 	      </ul>
 	    </li>
-	    <li>until no more items can be added to I</li>
+	    <li>until no more items can be added to I, return I.</li>
 	  </ul>
 	</article>
       </slide>
@@ -2572,10 +2586,10 @@ s5 = {X -> ()&sdot;}
 	<article>
 	  <ul class="build">
 	    <li>Simple mejora sobre LR(1).</li>
-	    <li>LR(1) aumenta considerablemente la cantidad de items, por lo que puede llegar a tener muchos estados.</li>
+	    <li>LR(1) aumenta considerablemente la cantidad de items, por lo que puede llegar a tener muchos estados.</li><br/>
 	    <li>Si 2 estados son identicos, excepto por el token de look ahead de los items, se unen en un solo estado.</li>
-	    <li>Esto reduce la cantidad de estados del DFA, mejorando el rendimiento del parser.</li>
-	    <li>Nota: Es posible que esto provoque más conflictos reduce/reduce.</li>
+	    <li>Esto reduce la cantidad de estados del DFA, mejorando el rendimiento del parser.</li><br/>
+	    <li>Nota: Es posible que esto provoque algunos conflictos reduce/reduce.</li>
 	  </ul>
 	</article>
       </slide>
